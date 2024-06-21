@@ -1,6 +1,5 @@
 const regs = {
   email: /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/,
-  phone: /^1[3-9]\d{9}$/,
   password: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&~_])[A-Za-z\d@$!%*?&~_]{8,18}$/,
   studentId: /^\d{10}$/,
 };
@@ -18,8 +17,21 @@ const verify = (rule, value, reg, callback) => {
 const confirmPassword = (rule, value, callback, password) => {
   if (value === "") {
     callback(new Error("请再次输入密码"));
+  } else if (!regs.password.test(value)) {
+    callback(new Error("密码格式不正确"));
   } else if (value !== password) {
     callback(new Error("两次输入密码不一致!"));
+  } else {
+    callback();
+  }
+};
+const resetPassword = (rule, value, callback, password) => {
+  if (value === "") {
+    callback(new Error("请输入新密码"));
+  } else if (!regs.password.test(value)) {
+    callback(new Error("密码格式不正确"));
+  } else if (value == password) {
+    callback(new Error("两次输入密码相同!"));
   } else {
     callback();
   }
@@ -39,5 +51,8 @@ export default {
   },
   confirmPassword: (rule, value, callback, passwordRef) => {
     return confirmPassword(rule, value, callback, passwordRef);
+  },
+  resetPassword: (rule, value, callback, passwordRef) => {
+    return resetPassword(rule, value, callback, passwordRef);
   },
 };
