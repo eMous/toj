@@ -1,0 +1,79 @@
+name: web-back CI
+
+on:
+  push:
+    branches:
+      - web-back
+  pull_request:
+    branches:
+      - web-back
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: 0wfXYvF8A52E~JY
+          MYSQL_DATABASE: bluewhale
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+      redis:
+        image: redis:latest
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: web/back/
+
+      - name: Install Redis CLI
+        run: sudo apt-get update && sudo apt-get install -y redis-tools
+
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h 127.0.0.1 -u root -p0wfXYvF8A52E~JY --silent; do
+            echo 'Waiting for MySQL...'
+            sleep 5
+          done
+
+      - name: Wait for Redis to be ready
+        run: |
+          until redis-cli -h localhost -p 6379 ping; do
+            echo 'Waiting for Redis...'
+            sleep 5
+          done
+
+      - name: Run dev
+        run: npm run start:dev
+        working-directory: web/back/
+
+      - name: Build project
+        run: npm run build
+        working-directory: web/back/
