@@ -29,11 +29,7 @@ export const useUserStore = defineStore("userStore", () => {
     let params = { uid: localStorage.getItem("user_uid"), ...toRaw(profile) };
     const result = await UserService.updateProfile(params);
     if (result.code == 200) {
-      ElMessage({
-        message: "更新信息成功",
-        type: "success",
-        center: true,
-      });
+      snackbarStore.show("更新信息成功", "success");
       Object.assign(profile, result.data);
     } else {
       snackbarStore.show("更新信息失败", "error");

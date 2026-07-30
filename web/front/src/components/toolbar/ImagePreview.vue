@@ -1,8 +1,4 @@
-<!--
-* @Component: 
-* @Maintainer: J.K. Yang
-* @Description: PhotoPreviewCard
--->
+
 <script setup lang="ts">
 import { ref } from "vue";
 const props = defineProps({

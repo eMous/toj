@@ -1,20 +1,17 @@
 <script setup>
-import { ref, getCurrentInstance } from "vue";
-
-import { useRouter } from "vue-router";
-const { proxy } = getCurrentInstance();
-const tabItems = ref([
-  { text: "Learn Course", value: "learn", icon: "school", route: "/dashboard/course" },
-  { text: "View Class", value: "class", icon: "group", route: "/dashboard/class" },
-  { text: "Deal Task", value: "task", icon: "task", route: "/dashboard/task" },
-  { text: "Chat GPT", value: "chat", icon: "chat", route: "/dashboard/chat" },
+import { ref } from "vue";
+const tab = ref("task");
+const tabItems= ref([
+  { text: "Task Overview", value: "task", icon: "task", route: "/task" },
+  { text: "Review Homework", value: "dashboard", icon: "dashboard", route: "/task/dashboard" },
+  { text: "Assign Homework", value: "create", icon: "create", route: "/task/create" },
+  { text: "Task Settings", value: "setting", icon: "settings", route: "/task/setting" },
 ]);
-const tab = ref("learn");
 </script>
 <template>
-  <div class="dashboard">
+  <div class="task">
     <v-row justify="start">
-        <v-tabs v-model="tab" color="secondary" direction="vertical" >
+      <v-tabs v-model="tab" color="secondary" direction="vertical">
           <v-tab
             v-for="{ text, value, icon, route } in tabItems"
             :key="value"
@@ -26,20 +23,22 @@ const tab = ref("learn");
             </template>
           </v-tab>
         </v-tabs>
-
-        <v-tabs-window v-model="tab">
+    
+    <v-tabs-window v-model="tab">
           <router-view v-slot="{ Component }">
             <div v-if="Component">
               <component :is="Component" />
             </div>
           </router-view>
-        </v-tabs-window>
-    </v-row>
+    </v-tabs-window>
+  </v-row>
   </div>
 </template>
 
+
+
 <style lang="scss" scoped>
-.dashboard {
+.task {
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -53,5 +52,5 @@ const tab = ref("learn");
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
+}  
 </style>

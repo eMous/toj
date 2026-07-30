@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-start items-center gap-4">
+  <v-container class="flex justify-start items-center gap-4">
     <v-sheet
       class="pa-4 text-center mx-auto"
       elevation="12"
@@ -28,35 +28,13 @@
         </v-btn>
       </div>
     </v-sheet>
-    <v-sheet
-      class="pa-4 text-center mx-auto"
-      elevation="12"
-      max-width="600"
-      rounded="lg"
-      width="100%"
-      color="info">
-    </v-sheet>
-  </div>
+  </v-container>
   <SnackBar></SnackBar>
 </template>
 
 <script setup>
 import { ref, getCurrentInstance, nextTick } from "vue";
 const { proxy } = getCurrentInstance();
-import { useSnackbarStore } from "@/store/snackbar";
-const snackbarStore = useSnackbarStore();
-snackbarStore.show("Welcome to the dashboard!", "info");
-// 控制抽屉显示的布尔值
-const drawer = ref(true);
-const rightMenu = [
-  { text: "个人详情", icon: "manage_accounts", route: "/profile" },
-  { text: "消息中心", icon: "mail", route: "/message" },
-  { text: "课程中心", icon: "menu_book", route: "/course" },
-  { text: "班级管理", icon: "groups", route: "/class" },
-  { text: "任务管理", icon: "task", route: "/task" },
-  { text: "作业列表", icon: "edit_note", route: "/homework" },
-  { text: "退出登录", icon: "logout", route: "/login", action: "logout" },
-];
 </script>
 
 <style lang="scss" scoped></style>

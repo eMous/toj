@@ -7,7 +7,12 @@ const router = createRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import("@/views/Login.vue"),
+      component: () => import("@/views/login/LoginApp.vue"),
+    },
+    {
+      path: "/login2",
+      name: "login2",
+      component: () => import("@/views/login/LoginApp2.vue"),
     },
     {
       path: "/",
@@ -22,7 +27,7 @@ const router = createRouter({
         {
           path: "/user",
           name: "user-profile",
-          component: () => import("@/views/profile/user-profile.vue"),
+          component: () => import("@/views/profile/ProfileApp.vue"),
           children: [
             {
               path: "",
@@ -32,17 +37,17 @@ const router = createRouter({
             {
               path: "profile",
               name: "profile-main",
-              component: () => import("@/views/profile/profile-basic.vue"),
+              component: () => import("@/views/profile/pages/profile-basic.vue"),
             },
             {
               path: "identity",
               name: "profile-identity",
-              component: () => import("@/views/profile/profile-identity.vue"),
+              component: () => import("@/views/profile/pages/profile-identity.vue"),
             },
             {
               path: "password",
               name: "profile-pwd",
-              component: () => import("@/views/profile/profile-pwd.vue"),
+              component: () => import("@/views/profile/pages/profile-pwd.vue"),
             },
           ],
         },
@@ -104,6 +109,7 @@ const router = createRouter({
               name: "re-course-learn",
               redirect: "/dashboard/course",
             },
+           
             {
               path: "class",
               name: "class-page",
@@ -168,34 +174,39 @@ const router = createRouter({
         {
           path: "/task",
           name: "manage-task",
-          component: () => import("@/views/task/task-page.vue"),
+          component: () => import("@/views/task/TaskApp.vue"),
           children: [
             {
               path: "",
+              name: "re-task-overview",
+              redirect: "/task/overview",
+            },
+            {
+              path: "overview",
               name: "task-overview",
-              component: () => import("@/views/task/task-overview.vue"),
+              component: () => import("@/views/task/pages/task-overview.vue"),
             },
             {
               path: "dashboard",
               name: "task-dashboard",
-              component: () => import("@/views/task/task-dashboard.vue"),
+              component: () => import("@/views/task/pages/task-dashboard.vue"),
             },
             {
               path: "setting",
               name: "task-setting",
-              component: () => import("@/views/task/task-setting.vue"),
+              component: () => import("@/views/task/pages/task-setting.vue"),
             },
             {
               path: "create",
               name: "create-task",
-              component: () => import("@/views/task/create-task.vue"),
+              component: () => import("@/views/task/pages/create-task.vue"),
             },
           ],
         },
         {
           path: "/todo",
           name: "todo-page",
-          component: () => import("@/views/todo/todo-page.vue"),
+          component: () => import("@/views/todo/TodoApp.vue"),
         },
       ],
     },

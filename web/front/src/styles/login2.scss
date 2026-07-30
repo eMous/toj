@@ -56,6 +56,94 @@ form.reset-form {
   margin-bottom: 10px;
 }
 
+.input-field {
+  display: grid;
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px;
+  border-radius: 55px;
+  grid-template-columns: 15% 80%;
+  padding: 0 0.3rem;
+  .el-form-item {
+    margin-bottom: 0;
+  }
+
+  .el-input {
+    line-height: 1.2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
+    &hover {
+      border-left: 5px solid #acacac;
+    }
+    :deep(.el-input__wrapper) {
+      background-color: #f0f0f0;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      padding: 2px 2px;
+      :deep(.el-input__inner) {
+        color: #333;
+      }
+    }
+  }
+}
+i {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.3rem;
+}
+.emailCode-row {
+  display: flex;
+}
+.input-field.emailCode {
+  max-width: 230px;
+  grid-template-columns: 25% 70%;
+}
+.input-field .input-field .el-input .input-field .el-input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
+
+.input-field .el-input .input-field .el-input input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+}
+
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.45rem;
+  color: #333;
+  border-radius: 50%;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  color: #4481eb;
+  border-color: #4481eb;
+}
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -121,6 +209,16 @@ form.reset-form {
 .panel p {
   font-size: 0.95rem;
   padding: 0.7rem 0;
+}
+.reset-line {
+  display: flex;
+  align-items: center;
+  .el-button {
+    margin-left: 120px;
+  }
+  .link {
+    margin-left: 120px;
+  }
 }
 .btn.transparent {
   border: none;

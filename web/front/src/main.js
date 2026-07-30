@@ -13,7 +13,6 @@ import SnackBar from "./components/common/SnackBar.vue";
 import "element-plus/dist/index.css";
 import "vxe-table/lib/style.css";
 import "vuetify/dist/vuetify.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./styles/base.css";
 //引入全局JS
 import VueCookies from "vue-cookies";

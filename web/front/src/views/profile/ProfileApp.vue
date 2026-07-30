@@ -17,7 +17,7 @@
           </v-list-item>
         </v-list>
       </v-col>
-      <v-col cols="14">
+      <v-col cols="15">
         <router-view></router-view>
       </v-col>
     </v-row>

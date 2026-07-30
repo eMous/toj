@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <v-container class="dashboard">
     <el-descriptions :column="4" v-for="(item, index) in tasks">
       <el-descriptions-item>
         <template #default>
@@ -50,7 +50,7 @@
         <CustomButton :width="120" @click="amendHomework" buttonText="点击批阅"></CustomButton>
       </el-descriptions-item>
     </el-descriptions>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
