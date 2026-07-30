@@ -11,10 +11,8 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { EmailService } from '~/shared/mailer/email.service';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { Public } from '~/common/decorators/common.decorator';
 import { RecaptchaService } from '~/shared/recaptcha/recaptcha.service';
-@ApiTags('user')
 @Controller('users')
 export class UserController {
   constructor(

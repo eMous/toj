@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
 import { CommonModule } from './common/common.module';
 import { CustomRedisModule } from './shared/redis/redis.module';
 import { DatabaseModule } from './shared/database/database.module';
